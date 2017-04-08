@@ -1,0 +1,15 @@
+{
+  "name": "meta-ntp",
+  "version": "0.1.0",
+  "author": "aamir",
+  "summary": "install ntp server",
+  "license": "opensource",
+  "source": "github",
+  "project_page": "githib",
+  "issues_url": "aamir.ahmad170@gmail.com",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ],
+  "data_provider": null
+}
+
