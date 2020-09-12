@@ -1,0 +1,30 @@
+DaemonSets are a great way to ensure a pod replica runs dynamically on each node. They even automatically handle the creation and removal of such pods when nodes join or leave the cluster. In this lab, you will have the opportunity to practice your skills with DaemonSets by using them to run pods on all nodes in an existing cluster.
+You are working for BeeBox, a company that provides regular shipments of bees to customers.
+
+The company is using some software on their K8s worker nodes that periodically leaves unnecessary data in a particular location on the worker node. Since this software could run on any node at any time, this trash data periodically appears on various worker nodes and should be cleaned up.
+
+Configure the cluster to create a pod on each worker node that periodically deleted the contents of the /etc/beebox/tmp on the worker node. Make sure a copy of this pod is automatically created on each worker node, even as new nodes are added to the cluster. Note that you should not run a copy of the pod on the control plane node.
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: beebox-cleanup
+spec:
+  selector:
+    matchLabels:
+      app: beebox-cleanup
+  template:
+    metadata:
+      labels:
+        app: beebox-cleanup
+    spec:
+      containers:
+      - name: busybox
+        image: busybox:1.27
+        command: ['sh', '-c', 'while true; do rm -rf /beebox-temp/*; sleep 60; done']
+        volumeMounts:
+        - name: beebox-tmp
+          mountPath: /beebox-temp
+      volumes:
+      - name: beebox-tmp
+        hostPath:
+          path: /etc/beebox/tmp
