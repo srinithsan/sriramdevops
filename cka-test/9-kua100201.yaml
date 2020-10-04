@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: kua100201
+    app_env_stage: dev
+  name: kua100201
+spec:
+  replicas: 7
+  selector:
+    matchLabels:
+      app: kua100201
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: kua100201
+    spec:
+      containers:
+      - image: redis
+        name: redis
+        resources: {}
+status: {}

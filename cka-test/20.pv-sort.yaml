@@ -1,0 +1,1 @@
+kubectl get pv --sort-by=.spec.capacity.storage > /opt/pv-sort-name.txt

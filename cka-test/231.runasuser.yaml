@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+          run: pod-security-1
+  name: pod-security-1
+  namespace: security
+spec:
+  containers:
+  - image: busybox
+    name: pod-security-1
+    command: ["/bin/sh","-c","while true;do echo sri > /dev/null;sleep 4000;done"]
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

@@ -1,0 +1,5 @@
+Name: kplabs-jenkins
+
+Image: jenkins
+
+The pod should have a label of env=development and org=kplabs

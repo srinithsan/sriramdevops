@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: pod-security
+  name: pod-security
+  namespace: security
+spec:
+  containers:
+  - image: busybox
+    name: pod-security
+    command: ["/bin/sh","-c","/opt/ping 127.0.0.1"]
+    resources: {}
+    volumeMounts:
+    - mountPath: /opt
+      name: pingv1
+    securityContext:
+      runAsUser: 1005
+  initContainers:
+  - image: busybox
+    name: pod-security-2
+    command: ["bin/sh","-c","cp /bin/ping /opt/ping;chmod 4755 /opt/ping"]
+    volumeMounts:
+    - mountPath: /opt
+      name: pingv1
+  volumes:
+  -  name: pingv1
+     emptyDir: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

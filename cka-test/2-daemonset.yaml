@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  creationTimestamp: null
+  labels:
+    app: kplabs-daemonset
+  name: kplabs-daemonset
+spec:
+  selector:
+    matchLabels:
+      app: kplabs-daemonset
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: kplabs-daemonset
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}

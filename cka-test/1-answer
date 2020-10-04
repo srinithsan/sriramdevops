@@ -1,0 +1,2 @@
+#kubectl logs counter-2 --all-containers
+kubectl logs counter2  --all-containers | grep 02

@@ -1,0 +1,10 @@
+root@ffdecda07f1c:~/questsions# kubectl create deployment kplabs-daemonset --image nginx  --dry-run=client -o yaml  | grep -v replicas | grep -v status| grep -v strategy | sed -e "s/Deployment/DaemonSet/g" > 2-daemonset.yaml
+root@ffdecda07f1c:~/questsions# kubectl apply -f 2-daemonset.yaml
+daemonset.apps/kplabs-daemonset created
+root@ffdecda07f1c:~/questsions# kubectl get pods
+NAME                     READY   STATUS              RESTARTS   AGE
+counter2                 3/3     Running             0          8m28s
+kplabs-daemonset-7zz8q   0/1     ContainerCreating   0          6s
+root@ffdecda07f1c:~/questsions# kubectl get ds
+NAME               DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
+kplabs-daemonset   1         1         1       1            1           <none>          70s

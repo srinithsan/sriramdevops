@@ -1,0 +1,4 @@
+ 1    kubectl run base-pod --image=busybox -o yaml --dry-run=client > 3-base-pod.yaml
+2     add init container and other container 
+3     add the volume and share it to nginx
+4    kubectl exec -it base-pod -c base-pod-nginx /bin/sh
